@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const { registrarVenta } = require('../controllers/ventasController');
+const { registrarVenta, obtenerVentas } = require('../controllers/ventasController');
 
-// Ruta para crear una nueva venta (Usamos POST porque enviamos datos)
-router.post('/', registrarVenta);
+router.post('/', registrarVenta); // Guardar venta
+router.get('/', obtenerVentas);   // Leer historial
 
 module.exports = router;

@@ -61,5 +61,14 @@ const registrarVenta = async (req, res) => {
         res.status(500).json({ mensaje: 'Hubo un error al procesar la venta' });
     }
 };
-
-module.exports = { registrarVenta };
+// Función para traer todas las ventas del historial
+const obtenerVentas = async (req, res) => {
+    try {
+        // Trae todas las ventas ordenadas de la más nueva a la más vieja
+        const ventas = await Venta.find().sort({ createdAt: -1 });
+        res.status(200).json(ventas);
+    } catch (error) {
+        res.status(500).json({ mensaje: 'Error al buscar el historial de ventas' });
+    }
+};
+module.exports = { registrarVenta, obtenerVentas };
