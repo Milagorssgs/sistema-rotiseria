@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --bg-base: #f3f4f6; --bg-surface: #ffffff; --bg-surface-hover: #f9fafb;
+  --text-main: #111827; --text-muted: #6b7280; --border: #e5e7eb;
+  --brand-red: #dc2626; --brand-red-dark: #b91c1c; --success: #10b981; --success-dark: #059669;
+}
+
+[data-theme='dark'] {
+  --bg-base: #0f0f0f; --bg-surface: #1a1a1a; --bg-surface-hover: #262626;
+  --text-main: #f9fafb; --text-muted: #9ca3af; --border: #333333;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  background-color: var(--bg-base); color: var(--text-main);
+  margin: 0; padding: 0; font-family: 'Inter', system-ui, sans-serif;
+  overflow-x: hidden; width: 100%; max-width: 100vw;
+}
+
+.app-layout { display: flex; min-height: 100vh; position: relative; width: 100%; }
+
+/* =========================================
+   HEADER Y CONTENIDO
+   ========================================= */
+.main-content { flex: 1; display: flex; flex-direction: column; width: 100%; max-width: 100vw; }
+.top-header { height: 60px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: flex-end; padding: 0 20px; background-color: var(--bg-surface); width: 100%; }
+.page-container { padding: 20px; flex: 1; overflow-y: auto; width: 100%; }
+
+/* =========================================
+   SIDEBAR PROFESIONAL
+   ========================================= */
+.sidebar-pro { width: 260px; background-color: var(--bg-surface); border-right: 1px solid var(--border); display: flex; flex-direction: column; flex-shrink: 0; z-index: 1000; transition: transform 0.3s ease; }
+.sidebar-header { height: 60px; display: flex; align-items: center; padding: 0 24px; border-bottom: 1px solid var(--border); font-weight: 800; font-size: 18px; color: var(--brand-red); }
+.nav-item { display: flex; align-items: center; gap: 12px; padding: 12px 24px; color: var(--text-muted); text-decoration: none; font-weight: 500; font-size: 14px; transition: 0.2s; border-left: 3px solid transparent; }
+.nav-item svg { width: 18px; height: 18px; opacity: 0.7; }
+.nav-item:hover { background-color: var(--bg-surface-hover); color: var(--text-main); }
+.nav-item.active { background-color: rgba(220, 38, 38, 0.05); color: var(--brand-red); border-left-color: var(--brand-red); }
+.nav-item.active svg { opacity: 1; stroke: var(--brand-red); }
+
+/* =========================================
+   COMPONENTES UI (Cards, Inputs, Botones)
+   ========================================= */
+.card-pro { background-color: var(--bg-surface); border: 1px solid var(--border); border-radius: 8px; padding: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); margin-bottom: 20px; width: 100%; }
+.section-title { font-size: 16px; font-weight: 600; margin: 0 0 16px 0; color: var(--text-main); }
+
+input, select { background-color: var(--bg-base); color: var(--text-main); border: 1px solid var(--border); padding: 10px 12px; border-radius: 6px; font-family: inherit; font-size: 14px; outline: none; width: 100%; }
+input:focus, select:focus { border-color: var(--brand-red); }
+
+.btn-primary { background-color: var(--brand-red); color: white; border: none; padding: 10px 16px; border-radius: 6px; font-weight: 600; cursor: pointer; transition: 0.2s; white-space: nowrap; }
+.btn-primary:hover { background-color: var(--brand-red-dark); }
+.btn-success { background-color: var(--success); color: white; border: none; padding: 12px 16px; border-radius: 6px; font-weight: 700; cursor: pointer; width: 100%; transition: 0.2s; }
+.btn-success:hover { background-color: var(--success-dark); }
+
+/* =========================================
+   DASHBOARD KPIs
+   ========================================= */
+.kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 24px; }
+.kpi-card { padding: 20px; border-radius: 8px; border: 1px solid var(--border); background-color: var(--bg-surface); display: flex; flex-direction: column; justify-content: center; }
+.kpi-title { font-size: 13px; color: var(--text-muted); font-weight: 600; text-transform: uppercase; margin-bottom: 8px; }
+.kpi-value { font-size: 28px; font-weight: 700; color: var(--text-main); margin: 0; }
+.text-green { color: var(--success) !important; }
+.font-bold { font-weight: bold; }
+
+/* =========================================
+   TABLAS RESPONSIVAS
+   ========================================= */
+.table-responsive-container { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.table-pro { width: 100%; border-collapse: collapse; text-align: left; font-size: 14px; min-width: 500px; }
+.table-pro th { padding: 12px; border-bottom: 1px solid var(--border); color: var(--text-muted); font-weight: 600; white-space: nowrap; }
+.table-pro td { padding: 12px; border-bottom: 1px solid var(--border); color: var(--text-main); }
+
+/* =========================================
+   GRILLAS Y FORMULARIOS (ARREGLO DEFINITIVO)
+   ========================================= */
+.pos-layout { display: grid; grid-template-columns: 2fr 1fr; gap: 24px; align-items: start; }
+.products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 16px; }
+.pos-btn { background-color: var(--bg-surface); border: 1px solid var(--border); border-radius: 8px; padding: 16px; text-align: left; cursor: pointer; transition: 0.2s; display: flex; flex-direction: column; min-height: 100px; }
+
+/* Esta es la regla que acomoda los cuadros de Recetas e Inventario en la compu */
+.responsive-flex, .responsive-form { display: flex; flex-direction: row; gap: 16px; align-items: center; width: 100%; }
+
+/* Botón Hamburguesa */
+.hamburger-btn { display: none; background: transparent; border: none; color: var(--text-main); font-size: 24px; cursor: pointer; padding: 0; margin-right: auto; }
+.menu-overlay { display: none; }
+
+/* =========================================
+   MODO CELULAR 
+   ========================================= */
+@media (max-width: 1024px) {
+  .hamburger-btn { display: block; }
+  .top-header { padding: 0 15px; }
+  .sidebar-pro { position: fixed; top: 0; left: 0; height: 100vh; transform: translateX(-100%); border-right: none; box-shadow: 4px 0 15px rgba(0,0,0,0.5); }
+  .sidebar-pro.open { transform: translateX(0); }
+  .menu-overlay { display: block; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6); z-index: 999; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+  .menu-overlay.open { opacity: 1; pointer-events: auto; }
+
+  .pos-layout { grid-template-columns: 1fr; gap: 15px; }
+  .page-container { padding: 15px; }
+  .kpi-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 15px; }
+  .kpi-card { padding: 15px; }
+  .kpi-value { font-size: 20px; }
+
+  /* Apila los formularios en celular */
+  .responsive-flex, .responsive-form { flex-direction: column; align-items: stretch; gap: 10px; }
+  .responsive-flex > div, .responsive-form > input, .responsive-form > select, .responsive-form > button { width: 100% !important; margin-bottom: 5px; }
+}
