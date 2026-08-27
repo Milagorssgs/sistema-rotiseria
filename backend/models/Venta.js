@@ -1,34 +1,15 @@
 const mongoose = require('mongoose');
 
-const ventaSchema = new mongoose.Schema({
-    productosVendidos: [{
-        producto: { 
-            type: mongoose.Schema.Types.ObjectId, 
-            ref: 'Producto',
-            required: true
-        },
-        cantidad: { 
-            type: Number, 
-            required: true 
-        },
-        precioUnitario: { 
-            type: Number, 
-            required: true // Guardamos el precio al momento de la venta por si luego aumenta
-        }
-    }],
-    totalVenta: { 
-        type: Number, 
-        required: true 
+const VentaSchema = mongoose.Schema({
+    productosVendidos: Array,
+    totalVenta: Number,
+    metodoPago: String,
+    detallesMixto: {
+        efectivo: { type: Number, default: 0 },
+        mp: { type: Number, default: 0 },
+        tarjeta: { type: Number, default: 0 }
     },
-    metodoPago: {
-        type: String,
-        enum: ['Efectivo', 'Mercado Pago', 'Tarjeta', 'Otro'],
-        default: 'Efectivo'
-    },
-    fecha: { 
-        type: Date, 
-        default: Date.now 
-    }
-});
+    empaque: { type: String, default: 'Ninguno' } // NUEVO: Para guardar Caja/Bolsita
+}, { timestamps: true });
 
-module.exports = mongoose.model('Venta', ventaSchema);
+module.exports = mongoose.model('Venta', VentaSchema);
